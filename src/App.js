@@ -1,42 +1,45 @@
-import React from 'react';
-import {
-  ChakraProvider,
-  Box,
-  Text,
-  Link,
-  VStack,
-  Code,
-  Grid,
-  theme,
-} from '@chakra-ui/react';
-import { ColorModeSwitcher } from './ColorModeSwitcher';
-import { Logo } from './Logo';
+import React, { useEffect, useState } from 'react';
+import HomeElencoThreads from './pages/HomeElencoThreads';
+import Soluzioni from './pages/Soluzioni';
+import { BrowserRouter as Router, Route, Routes, Link } from 'react-router-dom';
+import ThreadChat from './pages/ThreadChat';
+import ThreadDocente from './pages/ThreatDocente';
+import DomandeGuida from './pages/DomandeGuida';
+import Login from './pages/Login';
+import FileAperto from './pages/FileAperto';
+import { Container } from '@chakra-ui/react';
+import CreaPost from './pages/CreaPost';
+import { SessionContextProvider } from '@supabase/auth-helpers-react';
+import { createBrowserSupabaseClient } from '@supabase/auth-helpers-nextjs';
+import { UserProvider } from './components/UserContext';
+import { AttivitaProvider } from './components/AttivitàContext';
+
 
 function App() {
-  return (
-    <ChakraProvider theme={theme}>
-      <Box textAlign="center" fontSize="xl">
-        <Grid minH="100vh" p={3}>
-          <ColorModeSwitcher justifySelf="flex-end" />
-          <VStack spacing={8}>
-            <Logo h="40vmin" pointerEvents="none" />
-            <Text>
-              Edit <Code fontSize="xl">src/App.js</Code> and save to reload.
-            </Text>
-            <Link
-              color="teal.500"
-              href="https://chakra-ui.com"
-              fontSize="2xl"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              Learn Chakra
-            </Link>
-          </VStack>
-        </Grid>
-      </Box>
-    </ChakraProvider>
-  );
+
+   return (
+    <> 
+    <AttivitaProvider>
+      <UserProvider>
+        <Container pl='24px' pr='24px' className=' h-screen'>
+          <Router>
+            <Routes>        
+                <Route path='/' element={<HomeElencoThreads />}></Route>
+                <Route path='/Login' element={<Login />}></Route>  
+                <Route path='/Soluzioni' element={<Soluzioni />}></Route>  
+                <Route path='/ThreadChat/:titolo' element={<ThreadChat />}></Route> 
+                <Route path='/ThreadDocente/:titolo' element={<ThreadDocente />}></Route> 
+                <Route path='/DomandeGuida' element={<DomandeGuida />}></Route>
+                <Route path='/FileAperto' element={<FileAperto />}></Route>      
+                <Route path='/CreaPost' element={<CreaPost />}></Route>       
+            </Routes>
+          </Router>
+        </Container>
+      </UserProvider>
+    </AttivitaProvider>
+    </> 
+
+   );
 }
 
 export default App;
