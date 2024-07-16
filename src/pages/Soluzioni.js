@@ -48,6 +48,8 @@ export default function Soluzioni() {
     }
 
     //prendo i commenti di ogni soluzione problema per l'attività corrispondente
+
+    //ciao
     async function fetchCommenti() {
 
         if (attività) {
