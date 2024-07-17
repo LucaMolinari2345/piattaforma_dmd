@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/piattaforma_dmd/static/css/main.f1e2db12.css",
+    "main.js": "/piattaforma_dmd/static/js/main.b3f2fb9a.js",
+    "static/js/952.a9c72476.chunk.js": "/piattaforma_dmd/static/js/952.a9c72476.chunk.js",
+    "index.html": "/piattaforma_dmd/index.html",
+    "main.f1e2db12.css.map": "/piattaforma_dmd/static/css/main.f1e2db12.css.map",
+    "main.b3f2fb9a.js.map": "/piattaforma_dmd/static/js/main.b3f2fb9a.js.map",
+    "952.a9c72476.chunk.js.map": "/piattaforma_dmd/static/js/952.a9c72476.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.f1e2db12.css",
+    "static/js/main.b3f2fb9a.js"
+  ]
+}
