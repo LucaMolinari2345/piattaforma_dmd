@@ -9,10 +9,9 @@ import Login from './pages/Login';
 import FileAperto from './pages/FileAperto';
 import { Container } from '@chakra-ui/react';
 import CreaPost from './pages/CreaPost';
-import { SessionContextProvider } from '@supabase/auth-helpers-react';
-import { createBrowserSupabaseClient } from '@supabase/auth-helpers-nextjs';
 import { UserProvider } from './components/UserContext';
 import { AttivitaProvider } from './components/AttivitàContext';
+
 
 
 function App() {
@@ -31,7 +30,7 @@ function App() {
                 <Route path='/ThreadDocente/:titolo' element={<ThreadDocente />}></Route> 
                 <Route path='/DomandeGuida' element={<DomandeGuida />}></Route>
                 <Route path='/FileAperto' element={<FileAperto />}></Route>      
-                <Route path='/CreaPost' element={<CreaPost />}></Route>       
+                <Route path='/CreaPost' element={<CreaPost />}></Route>        
             </Routes>
           </Router>
         </Container>

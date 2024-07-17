@@ -15,6 +15,7 @@ export default function Soluzioni() {
 
     const navigate = useNavigate()
 
+   // const [mostraTuttiCommenti, setmostraTuttiCommenti] = useState({});
     const [soluzioni, setSoluzioni] = useState([]);
     const [commenti, setCommenti] = useState([]);
     const [docente, setDocente] = useState([]);
@@ -96,17 +97,6 @@ export default function Soluzioni() {
         }
            
     }
-  
-//     let start = 0;
-//     let end = 1;
-
-    // function mostraPiuCommenti() {
-    //     console.log("end prima della somma: " + end);
-    //     setEnd(end + 2)
-       
-    //     fetchCommenti(end)
-    //      console.log("end dopo la somma: " + end);
-    // }
 
     useEffect(() => {
         if (!loadingAttività && attività) {
@@ -174,6 +164,16 @@ export default function Soluzioni() {
         )
     }
 
+    //alterno la visibilità dei commenti per una data soluzione
+    // function toggleCommenti(soluzione) {
+    //     setmostraTuttiCommenti(prevState => (
+    //         {
+    //             ...prevState,
+    //             [soluzione]: !prevState[soluzione]
+    //         }
+    //     ))
+    // }
+
     return (
      <>
         <HeaderCollettiva titolo = "Soluzioni" paginaPrecedente = "/"/>
@@ -205,7 +205,9 @@ export default function Soluzioni() {
             
             {
                  soluzioni.map(soluzione => (
+
                     <>
+                  
                         {/* <Flex style={{marginBottom: '10px'}} justifyContent={'center'}> */}
                         <Flex style={{marginBottom: '10px'}}>
                             {/* <h5 className="text-lg font-semibold">{"Soluzione " + soluzione.gruppo}</h5> */}
@@ -241,18 +243,25 @@ export default function Soluzioni() {
                                 {/* passo al componente che crea i commenti di una soluzione un array composto da solo i commenti fatti a quella soluzione */}
                                 {/* ciclo sui commenti e per ognuno vedo se la soluzione a cui si riferisce è uguale alla soluzione che sto stampando ora, se si lo aggiungo all'array da passare al componente */}
                                 <CommentiSoluzione commenti={commenti.filter(commento => commento.gruppo === soluzione.gruppo)} />
+                                {/* <CommentiSoluzione commenti={commenti.filter(commento => commento.gruppo === soluzione.gruppo).slice(0, mostraTuttiCommenti[soluzione] ? commenti.length : 2)} /> */}
                             </Flex>
                             {/* <Flex justify={'center'} mt='10px' mb='15px'>
                                 <Text fontSize='xs' as='u' color='#5699FF' onClick={ () => console.log("ciao")}>mostra di più</Text>
                             </Flex> */}
+
+                            {/* { commenti.length > 2 && (
+                                <Flex justify={'center'} mt='10px' mb='15px'>
+                                    <Text fontSize='xs' as='u' color='#5699FF' onClick={()=> toggleCommenti(soluzione)}>{mostraTuttiCommenti ? 'Mostra meno' : 'Mostra di più'}</Text>
+                                </Flex>
+                            )} */}
+
                         </div>
                         {/* <Divider borderColor='#275F90' borderWidth='1px'/><br /> */}
                         <Divider borderColor='#000000' borderWidth='1px' mt={'5px'} opacity={0.2}/><br />
                     </>
                 ))
             }
-        {/* <Button onClick={()=> mostraPiuCommenti()}>Mostra di più</Button>
-        <Button onClick={()=> console.log(end)}>Mostra valore end</Button> */}
+
         </section>
      </>
     );

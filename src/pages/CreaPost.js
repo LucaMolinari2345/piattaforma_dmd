@@ -13,9 +13,8 @@ export default function CreaPost() {
   const { attività, loadingAttività} = useContext(AttivitaContext)
 
   const [textPost, setTextPost] = useState('')
-  const [immagine, setImmagine] = useState(null)
-  const [immagineBucket, setImmagineBucket] = useState(null)
-  const [nomeImmagine, setNomeImmagine] = useState('')
+  //const [immagine, setImmagine] = useState(null)
+  const [immagini, setImmagini] = useState([])
   const [loadingInsert, setLoadingInsert] = useState(false)
   const [uploadingImg, setUploadingImg] = useState(false)
 
@@ -72,8 +71,8 @@ export default function CreaPost() {
 
     async function pubblicaPost() {
       //controllo se c'è almeno un allegato o del testo, altrimenti ritorno alert con messaggio errore (per ora vedo solo testo)
-      if (!textPost && !immagine) {
-        alert('inserisci del testo o un immagine prima di pubblicare un post');
+      if (!textPost && immagini.length == 0) {
+        alert("inserisci del testo o un'immagine prima di pubblicare un post");
       } else {
         if (!rispostaA) {
           //console.log('questo non è risposta, aggiungo post con post padre = id post docente. Testo: ' , textPost ? textPost : null); 
@@ -86,8 +85,8 @@ export default function CreaPost() {
     }
 
     async function insertPost(idPadre) {
-      // console.log('creato post in risposta a ', idPadre);
-      // console.log('testo post: ', textPost);
+      console.log('creato post in risposta a ', idPadre);
+      console.log('testo post: ', textPost);
 
       if (attività && user) {
 
@@ -113,10 +112,10 @@ export default function CreaPost() {
           } else {
             console.log('post inserito:', data);
             setTextPost('')
-            if (immagine) {
+            if (immagini.length > 0) {
               await uploadFotoBucket(data)
             }
-            setImmagine(null)
+            setImmagini([])
           }
         setLoadingInsert(false);
         navigate(-1) 
@@ -125,10 +124,11 @@ export default function CreaPost() {
 
     async function uploadFotoBucket(postNuovo) {
 
-          const  result = await supabase
+      for (const immagine of immagini) {
+        const  result = await supabase
           .storage
           .from('allegati-post')
-          .upload(nomeImmagine, immagineBucket)
+          .upload(immagine.nome, immagine.fileBucket)
 
           if (result) {
             console.log('result di uploadBucket: ', result);
@@ -137,6 +137,8 @@ export default function CreaPost() {
           } else {
             console.log('errore in upload bucket');
           }
+      }
+          
                                    
     }
 
@@ -161,23 +163,28 @@ export default function CreaPost() {
 
 
     function aggiungiFoto(e) {
-      // const immagine = (e.target.files[0]);
-      // console.log(immagine);
-      if (e.target.files && e.target.files[0]) {
+
+      console.log(e.target.files);
+      if (e.target.files) {
         setUploadingImg(true)
-        const immagine = e.target.files[0];
-        setImmagineBucket(immagine)
-        setNomeImmagine(Date.now() + '_' + immagine.name)   //date.now per rendere unico il nome
-        setImmagine(URL.createObjectURL(immagine));        
-      }
+        const files = e.target.files    
+        const immagini = Array.from(files).map(file => ({
+          immagine: URL.createObjectURL(file),
+          nome: Date.now() + '_' + file.name,
+          fileBucket: file
+        }))   
+         setImmagini(immagini)
+       }
+
       setUploadingImg(false)
-      console.log('immagine: ', immagine, ', nome file: ', nomeImmagine);
+      console.log('immagini: ', immagini);
+
     }
 
-    function togliFoto() {
-      setUploadingImg(true)
-      setImmagine(null)
-      setUploadingImg(false)
+    function togliFoto(immagine) {
+       setUploadingImg(true)
+       setImmagini(immagini.filter(img => img.immagine !== immagine));
+       setUploadingImg(false)      
     }
 
 
@@ -217,21 +224,38 @@ export default function CreaPost() {
             <SkeletonCircle size='10' />     
         )}
 
-        {immagine && (
+        {/* {immagine && (
         <div className='flex'>
           <Image src={immagine} w={'auto'} h={'180px'} borderRadius='25' />    {/* className='border-solid border-2 border-blue-500' */}
-          <div className='-ml-5  w-6 h-6 ' onClick={() => togliFoto()}>
+         {/* <div className='-ml-5  w-6 h-6 ' onClick={() => togliFoto()}>
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="size-6">
               <path fill-rule="evenodd" d="M12 2.25c-5.385 0-9.75 4.365-9.75 9.75s4.365 9.75 9.75 9.75 9.75-4.365 9.75-9.75S17.385 2.25 12 2.25Zm-1.72 6.97a.75.75 0 1 0-1.06 1.06L10.94 12l-1.72 1.72a.75.75 0 1 0 1.06 1.06L12 13.06l1.72 1.72a.75.75 0 1 0 1.06-1.06L13.06 12l1.72-1.72a.75.75 0 1 0-1.06-1.06L12 10.94l-1.72-1.72Z" clip-rule="evenodd" />
             </svg>
           </div>
         </div>
-        )}
+        )} */}
 
-        <div className=' flex gap-5 items-center absolute bottom-5'>
+        {immagini && (
+        <div className=' flex flex-wrap gap-4'>
+            {immagini.map((immagine) => 
+            
+            <div className='flex'>
+              <Image src={immagine.immagine} w={'auto'} h={'180px'} borderRadius='25' />    {/* className='border-solid border-2 border-blue-500' */}
+              <div className='-ml-5  w-6 h-6 ' onClick={() => togliFoto(immagine.immagine)}>
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="size-6">
+                  <path fill-rule="evenodd" d="M12 2.25c-5.385 0-9.75 4.365-9.75 9.75s4.365 9.75 9.75 9.75 9.75-4.365 9.75-9.75S17.385 2.25 12 2.25Zm-1.72 6.97a.75.75 0 1 0-1.06 1.06L10.94 12l-1.72 1.72a.75.75 0 1 0 1.06 1.06L12 13.06l1.72 1.72a.75.75 0 1 0 1.06-1.06L13.06 12l1.72-1.72a.75.75 0 1 0-1.06-1.06L12 10.94l-1.72-1.72Z" clip-rule="evenodd" />
+                </svg>
+              </div>
+            </div>
+            
+            )   }
+        </div>  
+        )} 
+
+        <div className=' flex gap-5 items-center bottom-5 mt-10'>
           <div>
             <label>
-              <input type="file" id="picture" name="picture" accept="image/*"  className=' hidden' onChange={aggiungiFoto}/>
+              <input type="file" id="picture" name="picture" accept="image/*"  className=' hidden' multiple onChange={aggiungiFoto}/>
               <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
                 <path stroke-linecap="round" stroke-linejoin="round" d="m2.25 15.75 5.159-5.159a2.25 2.25 0 0 1 3.182 0l5.159 5.159m-1.5-1.5 1.409-1.409a2.25 2.25 0 0 1 3.182 0l2.909 2.909m-18 3.75h16.5a1.5 1.5 0 0 0 1.5-1.5V6a1.5 1.5 0 0 0-1.5-1.5H3.75A1.5 1.5 0 0 0 2.25 6v12a1.5 1.5 0 0 0 1.5 1.5Zm10.5-11.25h.008v.008h-.008V8.25Zm.375 0a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Z" />
               </svg>
