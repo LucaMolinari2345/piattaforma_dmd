@@ -12,7 +12,7 @@ export default function PostCardStudente(props) {
     const [loadingL, setLoadingL] = useState(true)
 
     //console.log(user.id);
-    console.log('risposta primo livello: ', props.post);
+   // console.log('risposta primo livello: ', props.post);
 
     //const isLikeByMe =  !!props.post.LIKE_POST.find(like => like.utente == userInfo.email) //il '!!' converte il risultato in un boolean
     const isLikeByMe =  !!likes.find(like => like.utente == userInfo.email) 
@@ -73,7 +73,7 @@ export default function PostCardStudente(props) {
             console.error('Errore nella query:', error);
             setLikes(null);
         } else {
-            console.log("like per post ", props.post.id, ' : ' ,likes);
+           // console.log("like per post ", props.post.id, ' : ' ,likes);
             setLikes(likes);
         }
     }

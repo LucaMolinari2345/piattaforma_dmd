@@ -6,7 +6,7 @@ import supabase from '../supabase';
 
 export default function CommentiPostStudente(props) {
   
-    console.log('risposta secondo livello: ', props.commento);
+   // console.log('risposta secondo livello: ', props.commento);
 
     const { userInfo } = useContext(UserContext);
     const [likes, setLikes] = useState([]);

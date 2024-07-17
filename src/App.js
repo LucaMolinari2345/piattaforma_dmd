@@ -21,7 +21,7 @@ function App() {
     <AttivitaProvider>
       <UserProvider>
         <Container pl='24px' pr='24px' className=' h-screen'>
-          <Router>
+          {/* <Router> */}
             <Routes>        
                 <Route path='/' element={<HomeElencoThreads />}></Route>
                 <Route path='/Login' element={<Login />}></Route>  
@@ -32,7 +32,7 @@ function App() {
                 <Route path='/FileAperto' element={<FileAperto />}></Route>      
                 <Route path='/CreaPost' element={<CreaPost />}></Route>        
             </Routes>
-          </Router>
+          {/* </Router> */}
         </Container>
       </UserProvider>
     </AttivitaProvider>

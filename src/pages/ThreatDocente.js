@@ -19,7 +19,8 @@ export default function ThreadDocente() {
 
     const navigate = useNavigate()  
     const { titolo } = useParams()
-    const url = window.location.href;
+    let url = window.location.hash;
+    url = url.substring(1);
 
     const [post, setPost] = useState([]);
     const [loadingT, setLoadingT] = useState(true)
