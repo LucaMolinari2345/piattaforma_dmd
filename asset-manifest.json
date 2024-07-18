@@ -1,15 +1,15 @@
 {
   "files": {
-    "main.css": "/piattaforma_dmd/static/css/main.6e2dfc07.css",
-    "main.js": "/piattaforma_dmd/static/js/main.5bba67b9.js",
+    "main.css": "/piattaforma_dmd/static/css/main.c1a56ff7.css",
+    "main.js": "/piattaforma_dmd/static/js/main.5a747585.js",
     "static/js/952.a9c72476.chunk.js": "/piattaforma_dmd/static/js/952.a9c72476.chunk.js",
     "index.html": "/piattaforma_dmd/index.html",
-    "main.6e2dfc07.css.map": "/piattaforma_dmd/static/css/main.6e2dfc07.css.map",
-    "main.5bba67b9.js.map": "/piattaforma_dmd/static/js/main.5bba67b9.js.map",
+    "main.c1a56ff7.css.map": "/piattaforma_dmd/static/css/main.c1a56ff7.css.map",
+    "main.5a747585.js.map": "/piattaforma_dmd/static/js/main.5a747585.js.map",
     "952.a9c72476.chunk.js.map": "/piattaforma_dmd/static/js/952.a9c72476.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.6e2dfc07.css",
-    "static/js/main.5bba67b9.js"
+    "static/css/main.c1a56ff7.css",
+    "static/js/main.5a747585.js"
   ]
 }
