@@ -1,7 +1,6 @@
 import { Button, Card, CardBody, CardFooter, Image, VStack } from '@chakra-ui/react'
-import React, { useEffect, useState } from 'react'
+import React from 'react'
 import { Link } from 'react-router-dom'
-import supabase from '../supabase';
 
 export default function SoluzioneCard(props) {
  // console.log(props.soluzione);

@@ -116,7 +116,7 @@ export default function ThreadDocente() {
     return (
      <>
         <HeaderCollettiva titolo = "Threads" paginaPrecedente = "/"/>
-        <section>
+        <section className='pb-4'>
             <Flex justifyContent='center' mb='30px'>
                 <h2 className='text-[#275F90] text-2xl font-bold'>{titolo}</h2>
             </Flex>

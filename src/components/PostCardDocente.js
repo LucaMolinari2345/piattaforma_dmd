@@ -69,7 +69,6 @@ export default function PostCard(props) {
                      {/* ciclo sull'array degli allegati del post, e per ognuno ritorno un elemento Immagine */}
                      {
                         props.post.ALLEGATO_POST.map(allegato => (
-                           // <Image src={allegato.file} borderRadius='45' />
                            <VStack>
                               <Link to={`/FileAperto`} state={{file: allegato.file, paginaPrec: props.urlThread, titoloHeader: "Threads"}}>        
                                  <Image src={allegato.file} maxH='150px' borderRadius='45' /> 

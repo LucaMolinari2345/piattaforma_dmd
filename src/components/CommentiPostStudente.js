@@ -102,16 +102,26 @@ export default function CommentiPostStudente(props) {
                 <div className=' flex'>
                     <Avatar size="sm" name={props.commento.UTENTE.username} src={props.commento.UTENTE.immagine_profilo}/>
                     <div className=' py-2 px-4 grow'>
-                        <Heading size='xs' mb={'4px'} fontFamily={'Roboto Mono'}>{props.commento.UTENTE.username}</Heading>                    
-                        <Text fontSize='xs'>{props.commento.testo}</Text>
-                        <div className=' flex justify-end mt-2'> {/* border-solid border-2 border-indigo-600    */}                                  
+                        <Heading size='xs' mb={'4px'} fontFamily={'Roboto Mono'}>{props.commento.UTENTE.username}</Heading>   
+                        <div className=' flex items-center'>
+                            <Text fontSize='xs'>{props.commento.testo}</Text>
+                            <div className=' flex gap-2 justify-end grow ml-4'>
+                                <div className=' flex items-center gap-1' onClick={() => toggleLikePost()}>
+                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className={"size-3 " + (isLikeByMe ? 'fill-red-500' : '')}>
+                                        <path strokeLinecap="round" strokeLinejoin="round" d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12Z" />
+                                    </svg>
+                                    <Text fontSize='10px'>{likes.length}</Text>
+                                </div>
+                            </div>
+                        </div>                    
+                        {/* <div className=' flex justify-end mt-2'> border-solid border-2 border-indigo-600                                     
                             <div className=' flex items-center gap-1' onClick={() => toggleLikePost()}>
                                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className={"size-3 " + (isLikeByMe ? 'fill-red-500' : '')}>
                                     <path strokeLinecap="round" strokeLinejoin="round" d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12Z" />
                                 </svg>
                                 <Text fontSize='10px'>{likes.length}</Text>
                             </div>                                 
-                        </div>
+                        </div> */}
                     </div>
                 </div>
             </> 
@@ -124,21 +134,31 @@ export default function CommentiPostStudente(props) {
                 <div className=' flex'>
                     <Avatar size="sm" name={props.commento.UTENTE.username} src={props.commento.UTENTE.immagine_profilo}/>
                     <div className=' py-2 px-4 grow'>
-                        <Heading size='xs' mb={'4px'} fontFamily={'Roboto Mono'}>{props.commento.UTENTE.username}</Heading>                    
-                        <Text fontSize='xs'>{props.commento.testo}</Text>
+                        <Heading size='xs' mb={'4px'} fontFamily={'Roboto Mono'}>{props.commento.UTENTE.username}</Heading> 
+                        <div className=' flex items-center'>
+                            <Text fontSize='xs'>{props.commento.testo}</Text>
+                            <div className=' flex gap-2 justify-end grow ml-4'>
+                                <div className=' flex items-center gap-1' onClick={() => toggleLikePost()}>
+                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className={"size-3 " + (isLikeByMe ? 'fill-red-500' : '')}>
+                                        <path strokeLinecap="round" strokeLinejoin="round" d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12Z" />
+                                    </svg>
+                                    <Text fontSize='10px'>{likes.length}</Text>
+                                </div>
+                            </div>
+                        </div>                     
                         <VStack>
                             <Link to={`/FileAperto`} state={{file: props.commento.ALLEGATO_POST[0].file, paginaPrec: props.urlThread, titoloHeader: "Threads"}}>        
                                 <Image src={props.commento.ALLEGATO_POST[0].file} maxW='160px' maxH='auto' borderRadius='25' mt={'10px'} mb={'20px'} /> 
                             </Link>  
                         </VStack>
-                        <div className=' flex justify-end mt-2'> {/* border-solid border-2 border-indigo-600    */}                                  
+                        {/* <div className=' flex justify-end mt-2'>  border-solid border-2 border-indigo-600                                     
                             <div className=' flex items-center gap-1' onClick={() => toggleLikePost()}>
                                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className={"size-3 " + (isLikeByMe ? 'fill-red-500' : '')}>
                                     <path strokeLinecap="round" strokeLinejoin="round" d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12Z" />
                                 </svg>
                                 <Text fontSize='10px'>{likes.length}</Text>
                             </div>                    
-                        </div>
+                        </div> */}
                     </div>
                 </div>
             </>            
@@ -151,14 +171,23 @@ export default function CommentiPostStudente(props) {
                     <div className=' flex'>
                         <Avatar size="sm" name={props.commento.UTENTE.username} src={props.commento.UTENTE.immagine_profilo}/>
                         <div className=' py-2 px-4 grow'>
-                            <Heading size='xs' mb={'4px'} fontFamily={'Roboto Mono'}>{props.commento.UTENTE.username}</Heading>                    
-                            <Text fontSize='xs'>{props.commento.testo}</Text>
+                            <Heading size='xs' mb={'4px'} fontFamily={'Roboto Mono'}>{props.commento.UTENTE.username}</Heading>    
+                            <div className=' flex items-center'>
+                                <Text fontSize='xs'>{props.commento.testo}</Text>
+                                <div className=' flex gap-2 justify-end grow ml-4'>
+                                    <div className=' flex items-center gap-1' onClick={() => toggleLikePost()}>
+                                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className={"size-3 " + (isLikeByMe ? 'fill-red-500' : '')}>
+                                            <path strokeLinecap="round" strokeLinejoin="round" d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12Z" />
+                                        </svg>
+                                        <Text fontSize='10px'>{likes.length}</Text>
+                                    </div>
+                                </div>
+                            </div>                  
 
                             <div className=' grid grid-cols-2 gap-4 mt-[30px]'> 
                                 {/* ciclo sull'array degli allegati del post, e per ognuno ritorno un elemento Immagine */}
                                 {
                                     props.commento.ALLEGATO_POST.map(allegato => (
-                                    // <Image src={allegato.file} borderRadius='45' />
                                     <VStack>
                                         <Link to={`/FileAperto`} state={{file: allegato.file, paginaPrec: props.urlThread, titoloHeader: "Threads"}}>        
                                             <Image src={allegato.file} maxH='150px' borderRadius='45' /> 
@@ -168,14 +197,14 @@ export default function CommentiPostStudente(props) {
                                 }
                             </div>
 
-                            <div className=' flex justify-end mt-2'> {/* border-solid border-2 border-indigo-600    */}                                  
+                            {/* <div className=' flex justify-end mt-2'>  border-solid border-2 border-indigo-600                                     
                                 <div className=' flex items-center gap-1' onClick={() => toggleLikePost()}>
                                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className={"size-3 " + (isLikeByMe ? 'fill-red-500' : '')}>
                                         <path strokeLinecap="round" strokeLinejoin="round" d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12Z" />
                                     </svg>
                                     <Text fontSize='10px'>{likes.length}</Text>
                                  </div>                              
-                            </div>
+                            </div> */}
                         </div>
                     </div>
                 </>                      

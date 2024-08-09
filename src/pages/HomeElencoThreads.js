@@ -1,12 +1,10 @@
 import { useContext, useEffect, useState } from 'react';
 import HeaderCollettiva from '../components/HeaderCollettiva';
 import supabase from '../supabase';
-import { Box, Card, CardBody, Container, Flex, HStack, Skeleton, VStack } from '@chakra-ui/react';
-import { Link, useNavigate } from 'react-router-dom';
+import { Box, Flex, Skeleton } from '@chakra-ui/react';
+import { useNavigate } from 'react-router-dom';
 import LinkCard from '../components/LinkCard';
-import { useSession } from '@supabase/auth-helpers-react';
 import { UserContext } from '../components/UserContext';
-import Logout from '../components/Logout';
 import { AttivitaContext } from '../components/AttivitàContext';
 
 export default function HomeElencoThreads() {
@@ -54,19 +52,6 @@ export default function HomeElencoThreads() {
     }, [loading, user, navigate])
 
     //quando componente viene montata, richiama funzione fetchData
-    //  useEffect(() => {
-
-    //     try {
-    //         setLoadingT(true)
-    //         fetchData()
-    //     } catch (error) {
-    //         console.error('errore nel caricamento dei dati: ', error);
-    //     } finally {
-    //         setLoadingT(false); //qualunque sia il risultato del try, il blocco finally viene eseguito e imposta a false lo stato di caricamento
-    //     }
-
-    // }, [])
-
     useEffect(() => {
         if (!loadingAttività && attività) {
             try {
@@ -119,7 +104,7 @@ export default function HomeElencoThreads() {
                 <div style={{marginBottom: '30px'}}>
                     <LinkCard titoloS="Soluzioni" link = "/Soluzioni" img={
                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-12">
-                        <path stroke-linecap="round" stroke-linejoin="round" d="M12 18v-5.25m0 0a6.01 6.01 0 0 0 1.5-.189m-1.5.189a6.01 6.01 0 0 1-1.5-.189m3.75 7.478a12.06 12.06 0 0 1-4.5 0m3.75 2.383a14.406 14.406 0 0 1-3 0M14.25 18v-.192c0-.983.658-1.823 1.508-2.316a7.5 7.5 0 1 0-7.517 0c.85.493 1.509 1.333 1.509 2.316V18" />
+                          <path stroke-linecap="round" stroke-linejoin="round" d="M12 18v-5.25m0 0a6.01 6.01 0 0 0 1.5-.189m-1.5.189a6.01 6.01 0 0 1-1.5-.189m3.75 7.478a12.06 12.06 0 0 1-4.5 0m3.75 2.383a14.406 14.406 0 0 1-3 0M14.25 18v-.192c0-.983.658-1.823 1.508-2.316a7.5 7.5 0 1 0-7.517 0c.85.493 1.509 1.333 1.509 2.316V18" />
                         </svg>
                         }
                     />
@@ -153,15 +138,7 @@ export default function HomeElencoThreads() {
                 </div>
                 <div style={{marginBottom: '30px'}}>
                     <h6 className=' text-center text-[#275F90] font-bold' style={{marginBottom: '10px'}}>Discussione di bilancio delle soluzioni</h6>
-                    {/* {
-                        threadsDocente.map(thread => (
-                            <LinkCard titolo = {thread.titolo} link = "/ThreadDocente" img={
-                                <svg xmlns="http://www.w3.org/2000/svg" height={'36'} width={'36'} viewBox="0 0 640 512">
-                                <path d="M192 96a48 48 0 1 0 0-96 48 48 0 1 0 0 96zm-8 384V352h16V480c0 17.7 14.3 32 32 32s32-14.3 32-32V192h56 64 16c17.7 0 32-14.3 32-32s-14.3-32-32-32H384V64H576V256H384V224H320v48c0 26.5 21.5 48 48 48H592c26.5 0 48-21.5 48-48V48c0-26.5-21.5-48-48-48H368c-26.5 0-48 21.5-48 48v80H243.1 177.1c-33.7 0-64.9 17.7-82.3 46.6l-58.3 97c-9.1 15.1-4.2 34.8 10.9 43.9s34.8 4.2 43.9-10.9L120 256.9V480c0 17.7 14.3 32 32 32s32-14.3 32-32z"/>
-                                </svg>}
-                            />
-                        ))
-                    } */}
+        
                     { threadsDocente.length != 0 ? 
                         
                         threadsDocente.map(thread => (
