@@ -103,7 +103,7 @@ export default function PostCardStudente(props) {
   if (props.post.ALLEGATO_POST.length == 0) {
     return (
      <>
-        <div style={{marginBottom: '10px'}} className='flex'>               
+        <div style={{marginBottom: '12px'}} className='flex'>               
             <Avatar size="sm" name={props.post.UTENTE.username} src={props.post.UTENTE.immagine_profilo}/>
             <div className=' py-2 px-4 grow'>
                 <Heading size='xs' mb={'4px'} fontFamily={'Roboto Mono'}>{props.post.UTENTE.username}</Heading> 
@@ -144,7 +144,7 @@ export default function PostCardStudente(props) {
 
     return (
         <>
-           <div style={{marginBottom: '10px'}} className='flex'>               
+           <div style={{marginBottom: '12px'}} className='flex'>               
                <Avatar size="sm" name={props.post.UTENTE.username} src={props.post.UTENTE.immagine_profilo}/>
                <div className=' py-2 px-4 grow'>
                    <Heading size='xs' mb={'4px'} fontFamily={'Roboto Mono'}>{props.post.UTENTE.username}</Heading>  
@@ -204,7 +204,7 @@ export default function PostCardStudente(props) {
 
     return (
         <>
-           <div style={{marginBottom: '10px'}} className='flex'>               
+           <div style={{marginBottom: '12px'}} className='flex'>               
                <Avatar size="sm" name={props.post.UTENTE.username} src={props.post.UTENTE.immagine_profilo}/>
                <div className=' py-2 px-4 grow'>
                    <Heading size='xs' mb={'4px'} fontFamily={'Roboto Mono'}>{props.post.UTENTE.username}</Heading>  

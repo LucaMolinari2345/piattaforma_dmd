@@ -99,7 +99,7 @@ export default function CommentiPostStudente(props) {
 
         return (
             <>
-                <div className=' flex'>
+                <div className=' flex mb-3'>
                     <Avatar size="sm" name={props.commento.UTENTE.username} src={props.commento.UTENTE.immagine_profilo}/>
                     <div className=' py-2 px-4 grow'>
                         <Heading size='xs' mb={'4px'} fontFamily={'Roboto Mono'}>{props.commento.UTENTE.username}</Heading>   
@@ -131,7 +131,7 @@ export default function CommentiPostStudente(props) {
             
         return (
             <>
-                <div className=' flex'>
+                <div className=' flex  mb-3'>
                     <Avatar size="sm" name={props.commento.UTENTE.username} src={props.commento.UTENTE.immagine_profilo}/>
                     <div className=' py-2 px-4 grow'>
                         <Heading size='xs' mb={'4px'} fontFamily={'Roboto Mono'}>{props.commento.UTENTE.username}</Heading> 
@@ -168,7 +168,7 @@ export default function CommentiPostStudente(props) {
             
         return (
                 <>
-                    <div className=' flex'>
+                    <div className=' flex  mb-3'>
                         <Avatar size="sm" name={props.commento.UTENTE.username} src={props.commento.UTENTE.immagine_profilo}/>
                         <div className=' py-2 px-4 grow'>
                             <Heading size='xs' mb={'4px'} fontFamily={'Roboto Mono'}>{props.commento.UTENTE.username}</Heading>    
