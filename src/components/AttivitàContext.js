@@ -11,7 +11,7 @@ export const AttivitaProvider = ({ children }) => {
         let { data: attività, error } = await supabase
             .from('ATTIVITA')
             .select('*')
-            .eq('id', 25)
+            .eq('id', 24)
             .single();
 
         if (error) {
